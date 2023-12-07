@@ -4,6 +4,27 @@ import { NextRequest, NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest, res: NextResponse) {
+    
+    // const id = req.url.split('/').pop();   /// const { id } = req.query
+    // if (id) {
+    //     const person = await prisma.person.findUnique({
+    //         where: {
+    //             id: parseInt(id),
+    //         }
+    //     })
+    //     if (!person) {
+    //         return new Response('Not found', {
+    //             status: 404,
+    //         })
+    //     }
+    //     return new Response(JSON.stringify(person), {
+    //         status: 200,
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //     })
+    // }
+
     const people = await prisma.person.findMany();
     return new Response(JSON.stringify(people), {
         status: 200,
